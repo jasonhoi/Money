@@ -28,6 +28,12 @@ A Money value type designed for C#, noted that since it is designed to be immuta
 Money myMoney = new Money(10, "USD");
 Money myMoney2 = new Money((decimal)20.05, "USD");
 
+# Money display
+var myMoney = new Money(0.1m, "BTC")
+myMoney.toString()				#=> ฿0.1000
+"I have " + myMoney + " in my pocket." 		#=> I have ฿0.1000 in my pocket.
+myMoney.DisplayAsSubType("mBTC").toString()	#=> mBTC 100.0000
+
 # Comparisons
 myMoney == new Money(10, "USD")			#=> true
 myMoney == new Money(10.00001, "USD")		#=> false
@@ -38,17 +44,13 @@ myMoney > myMoney2		#=> false
 myMoney <= myMoney2		#=> true
 
 # Arithmetic
-myMoney * new Money(10, "BTC")		#=> throw new ArgumentException("Money Currency Not Equal")
+myMoney * new Money(10, "USD")		#=> throw new ArgumentException("Money Currency Not Equal")
 myMoney + myMoney2 == new Money((decimal)30.5, "USD")
 myMoney - myMoney2 == new Money((decimal)-10.5, "USD")
 myMoney * myMoney2 == new Money((decimal)205.0, "USD")
-myMoney / 10      == new Money(1, "USD")
+myMoney / 10       == new Money(1, "USD")
 (myMoney - (decimal)0.5) * 5 == new Money((decimal)100, "USD")
 
-# Money display
-myMoney = new Money(0.1m)
-myMoney.toString()				#=> ฿0.1000
-"I have " + myMoney + " in my pocket." 		#=> I have ฿0.1000 in my pocket.
-myMoney.DisplayAsSubType("mBTC").toString()	#=> mBTC 100.0000
+
 
 ```
