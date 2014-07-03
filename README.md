@@ -35,21 +35,23 @@ myMoney.toString()				#=> ฿0.1000
 myMoney.DisplayAsSubType("mBTC").toString()	#=> mBTC 100.0000
 
 # Comparisons
+var myMoney = new Money(10, "USD");
+var myMoney2 = new Money(20.05m, "USD");
 myMoney == new Money(10, "USD")			#=> true
 myMoney == new Money(10.00001, "USD")		#=> false
 myMoney == new Money(100, "EUR")		#=> false
 myMoney != new Money(100, "EUR")		#=> true
-
-myMoney > myMoney2		#=> false
-myMoney <= myMoney2		#=> true
+myMoney > myMoney2				#=> false
+myMoney <= myMoney2				#=> true
 
 # Arithmetic
-myMoney * new Money(10, "USD")		#=> throw new ArgumentException("Money Currency Not Equal")
+Money myMoney = new Money(10, "USD");
+myMoney * new Money(10, "EUR")		#=> throw new ArgumentException("Money Currency Not Equal")
 myMoney + myMoney2 == new Money((decimal)30.5, "USD")
-myMoney - myMoney2 == new Money((decimal)-10.5, "USD")
-myMoney * myMoney2 == new Money((decimal)205.0, "USD")
+myMoney - myMoney2 == new Money(-10.5m, "USD")
+myMoney * myMoney2 == new Money(205.0m, "USD")
 myMoney / 10       == new Money(1, "USD")
-(myMoney - (decimal)0.5) * 5 == new Money((decimal)100, "USD")
+(myMoney - 0.5m) * 5 == new Money(100, "USD")
 
 
 
