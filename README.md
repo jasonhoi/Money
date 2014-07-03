@@ -31,7 +31,8 @@ Money myMoney = new Money(10, "USD");
 var myMoney = new Money(0.1m, "BTC")
 myMoney.toString()				#=> ฿0.1000
 "I have " + myMoney + " in my pocket." 		#=> I have ฿0.1000 in my pocket.
-myMoney.DisplayAsSubType("mBTC")		#=> mBTC 100.0000
+myMoney.DisplayAsSubType("mBTC");
+myMoney.toString()				#=> mBTC 100.0000
 
 # Comparisons
 var myMoney = new Money(10, "USD");
