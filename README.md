@@ -1,4 +1,4 @@
-# Money - A Value Type for C# - W.I.P. #
+# Money Value Type W.I.P. #
 
 ## Introduction
 
@@ -21,13 +21,13 @@ A Money value type design for C#.
 
 ## Usage
 
-``` ruby
+```
 
-// 10.00 USD
+# 10.00 USD
 Money myMoney = new Money(10, "USD");
 Money myMoney2 = new Money((decimal)20.05, "USD");
 
-// Comparisons
+# Comparisons
 myMoney == new Money(10, "USD")			#=> true
 myMoney == new Money(10.00001, "USD")	#=> false
 myMoney == new Money(100, "EUR")		#=> false
