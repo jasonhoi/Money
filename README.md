@@ -46,7 +46,9 @@ myMoney > myMoney2				#=> false
 myMoney <= myMoney2				#=> true
 
 # Arithmetic
-Money myMoney = new Money(10, "USD");
+var myMoney = new Money(10, "USD");
+var myMoney2 = new Money(20.05m, "USD");
+
 myMoney * new Money(10, "EUR")			#=> throw new ArgumentException("Money Currency Not Equal")
 myMoney + myMoney2 == new Money((decimal)30.5, "USD")
 myMoney - myMoney2 == new Money(-10.5m, "USD")
