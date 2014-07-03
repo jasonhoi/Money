@@ -26,7 +26,6 @@ A Money value type designed for C#, noted that since it is designed to be immuta
 
 # 10.00 USD
 Money myMoney = new Money(10, "USD");
-Money myMoney2 = new Money((decimal)20.05, "USD");
 
 # Money display
 var myMoney = new Money(0.1m, "BTC")
