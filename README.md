@@ -2,11 +2,12 @@
 
 ## Introduction
 
-A Money value type design for C#.
+A Money value type designed for C#, noted that since it is designed to be immutable-alike, you may need to cocnern about performance when doing long calculation on Money objects.
 
 ### Features
 
 - Provides a `Money` class encapsulates all information and allow for dynamic formatting based its own internal Currency setup.
+- By design, most fields are ready-only, means each Money object is fixed when instantiated, as in the real world, Money can not change its form or currency type after it is created, computation and conversion are allowed but they will always produce a new Money object.
 - Provides a `Currency` class served as both the decorating class for Money displaying operation and a standalone class.
 - Currency types definition is defined in a separate respository, which means developer can add more types as needed.
 - Support digital currencies (ex.Bitcoin, Litecoin) and currency sub-type display and definition.
