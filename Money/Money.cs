@@ -21,6 +21,9 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
     {
         Amount = (decimal)amount;
         Currency = new Currency(isoCode.ToUpper());
+
+        if (Currency == null)
+            throw new ArgumentNullException("Currency is not defined in Money object");
     }
 
     #region Equatable and Operator ==, !=
@@ -107,10 +110,8 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
     #region Operator +, -
     public static Money operator +(Money left, Money right)
     {
-        if (left.Currency == right.Currency)
-            return new Money(left.Amount + right.Amount, left.Currency);
-        else
-            throw new ArgumentException("Money Currency Not Equal");
+        AssertSameCurrency(left, right);
+        return new Money(left.Amount + right.Amount, left.Currency);
     }
 
     public static Money operator +(Money left, decimal right)
@@ -120,10 +121,8 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public static Money operator -(Money left, Money right)
     {
-        if (left.Currency == right.Currency)
-            return new Money(left.Amount - right.Amount, left.Currency);
-        else
-            throw new ArgumentException("Money Currency Not Equal");
+        AssertSameCurrency(left, right);
+        return new Money(left.Amount - right.Amount, left.Currency);
     }
 
     public static Money operator -(Money left, decimal right)
@@ -137,6 +136,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public static Money operator *(Money left, Money right)
     {
+        AssertSameCurrency(left, right);
         return new Money(left.Amount * right.Amount, left.Currency);
     }
 
@@ -147,6 +147,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public static Money operator /(Money left, Money right)
     {
+        AssertSameCurrency(left, right);
         return new Money(left.Amount / right.Amount, left.Currency);
     }
 
@@ -160,7 +161,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
     public static void AssertSameCurrency(Money first, Money second)
     {
         if (first == null || second == null)
-            throw new ArgumentNullException("Money Is Null");
+            throw new ArgumentNullException("One or both Money Is Null");
         if (first.Currency != second.Currency)
             throw new ArgumentException("Money Currency Not Equal");
     }
