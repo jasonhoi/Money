@@ -10,9 +10,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public Money(decimal amount, Currency currency)
     {
-        if (currency == null)
-            throw new ArgumentNullException("Currency is not defined in Money object");
-
+        AssertNotNull(currency);
         Amount = amount;
         Currency = currency;
     }
@@ -21,9 +19,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
     {
         Amount = (decimal)amount;
         Currency = new Currency(isoCode.ToUpper());
-
-        if (Currency == null)
-            throw new ArgumentNullException("Currency is not defined in Money object");
+        AssertNotNull(Currency);
     }
 
     #region Equatable and Operator ==, !=
@@ -116,6 +112,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public static Money operator +(Money left, decimal right)
     {
+        AssertNotNull(left);
         return new Money(left.Amount + right, left.Currency);
     }
 
@@ -127,6 +124,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public static Money operator -(Money left, decimal right)
     {
+        AssertNotNull(left);
         return new Money(left.Amount - right, left.Currency);
     }
 
@@ -142,6 +140,7 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public static Money operator *(Money left, decimal right)
     {
+        AssertNotNull(left);
         return new Money(left.Amount * right, left.Currency);
     }
 
@@ -153,18 +152,31 @@ public sealed class Money : IEquatable<Money>, IComparable, IComparable<Money>
 
     public static Money operator /(Money left, decimal right)
     {
+        AssertNotNull(left);
         return new Money(left.Amount / right, left.Currency);
     }
 
     #endregion
 
+    #region Helper functions
+    public static void AssertNotNull(Money money)
+    {
+        if (money == null) throw new ArgumentNullException("Money Is Null");
+    }
+
+    public static void AssertNotNull(Currency currency)
+    {
+        if (currency == null) throw new ArgumentNullException("Currency Is Null");
+    }
+
     public static void AssertSameCurrency(Money first, Money second)
     {
         if (first == null || second == null)
-            throw new ArgumentNullException("One or both Money Is Null");
+            throw new ArgumentNullException("Any Money Is Null");
         if (first.Currency != second.Currency)
             throw new ArgumentException("Money Currency Not Equal");
     }
+    #endregion
 
     /// <summary>
     /// Use the decorated interal Currency object to display the string
