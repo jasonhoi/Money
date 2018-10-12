@@ -23,7 +23,6 @@ A Money value type designed for C#, noted that since it is designed to be immuta
 ## Usage
 
 ```
-
 # 10.00 USD
 Money myMoney = new Money(10, "USD");
 
