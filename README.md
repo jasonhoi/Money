@@ -2,7 +2,7 @@
 
 ## Introduction
 
-A Money value type designed for C#, noted that since it is designed to be immutable-alike, you may need to cocnern about performance when doing long calculation on Money objects.
+A Money value type designed for C#, noted that since it is designed to be immutable-alike, you may need to concern about performance when doing long calculation with Money objects.
 
 ### Features
 
